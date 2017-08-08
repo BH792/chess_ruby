@@ -1,4 +1,4 @@
-require "rook"
+require_relative "../lib/pieces/rook"
 
 describe Rook do
   test_rook = Rook.new("black")

@@ -1,5 +1,4 @@
-require_relative "board"
-require "pry"
+
 
 class Console
   def print(board_array)
@@ -73,17 +72,27 @@ class Console
     index += (coord[1].to_i - 1) * 8
   end
 
-  def get_valid_move
+  def move_to_indexes(raw_move)
+    raw_coords = raw_move.split
+    raw_coords.map { |coord| coord_to_index(coord) }
+  end
+
+  def get_valid_move_coords
     puts "Please enter a valid move or enter 'help' for more info"
     raw_move = gets.chomp
-    if raw_move.downcase == "help"
+    if raw_move.downcase == "help" || raw_move.downcase == "h"
       move_help
-    elsif raw_move.split.length == 2 && raw_move.split.all? { |coord| is_valid?(coord) }
-      puts raw_move
+    elsif is_move_valid?(raw_move)
+      move_to_indexes(raw_move)
     end
   end
 
-  def is_valid?(coord)
+  def is_move_valid?(raw_user_move)
+    raw_coords = raw_user_move.split
+    raw_coords.length == 2 && raw_coords.all? { |coord| is_coord_valid?(coord) }
+  end
+
+  def is_coord_valid?(coord)
     if coord.length == 2 &&
       if coord[0].downcase <= "h" && coord[0].downcase >= "a"
         if coord[1].to_i <= 8 && coord[1].to_i >= 1
@@ -102,10 +111,12 @@ class Console
   end
 end
 
-console = Console.new
-# console.is_valid?("a2")
-console.get_valid_move
-# binding.pry
-""
+
+# console = Console.new
+#
+# # console.is_valid?("a2")
+# # console.get_valid_move
+# # binding.pry
+# ""
 # board = Board.new
 # console.print(board.board)

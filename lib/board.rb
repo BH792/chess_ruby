@@ -4,8 +4,6 @@ require_relative "../lib/pieces/bishop"
 require_relative "../lib/pieces/rook"
 require_relative "../lib/pieces/queen"
 require_relative "../lib/pieces/king"
-require "pry"
-require "pp"
 # 1 pawn
 # 2 knight
 # 3 bishop

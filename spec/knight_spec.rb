@@ -1,4 +1,4 @@
-require "knight"
+require_relative "../lib/pieces/knight"
 
 describe Knight do
   test_knight = Knight.new("black")

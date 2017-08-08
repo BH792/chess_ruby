@@ -1,4 +1,4 @@
-require "bishop"
+require_relative "../lib/pieces/bishop"
 
 describe Bishop do
   test_bishop = Bishop.new("white")
