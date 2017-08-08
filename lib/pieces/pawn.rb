@@ -12,6 +12,8 @@ class Pawn < Piece
       [target_index]
     elsif move_diff == 7 * player_direction || move_diff == 9 * player_direction
       "Capture"
+    else
+      []
     end
   end
 end

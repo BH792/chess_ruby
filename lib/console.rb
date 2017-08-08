@@ -93,14 +93,9 @@ class Console
   end
 
   def is_coord_valid?(coord)
-    if coord.length == 2 &&
-      if coord[0].downcase <= "h" && coord[0].downcase >= "a"
-        if coord[1].to_i <= 8 && coord[1].to_i >= 1
-          return true
-        end
-      end
-    end
-    false
+    (coord.length == 2 &&
+    coord[0].downcase <= "h" && coord[0].downcase >= "a" &&
+    coord[1].to_i <= 8 && coord[1].to_i >= 1)
   end
 
   def move_help
