@@ -1,6 +1,8 @@
-require_relative "piece"
+
 
 class Rook < Piece
+  include OrthogonalMovement
+
   def move_trace(current_index, target_index)
     move_diff = current_index - target_index
     move_direction = move_diff > 0 ? -1 : 1

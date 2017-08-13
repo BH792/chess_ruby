@@ -3,7 +3,7 @@ require "board"
 
 describe Console do
   test_console = Console.new
-  console_input = StringIO.new("A1     b1   \nh8 g8\n")
+
   # test_board = Board.new
 
   describe "print" do
@@ -51,8 +51,19 @@ describe Console do
   end
 
   describe "get_valid_move_coords" do
-    it "returns correct index values when given input" do
-      # expect(test_console.get_valid_move_coords).to eq([0, 1])
+    it "returns correct index values when given valid input" do
+      allow(test_console).to receive(:gets).and_return("a1 b1")
+      expect(test_console.get_valid_move_coords).to eq([0, 1])
     end
+
+    # it "returns nil when given invalid input" do
+    #   allow(self).to receive(:gets). and_return("A1b1")
+    #   expect {test_console.get_valid_move_coords}.to output(nil)
+    # end
+    #
+    # it "returns nil when given invalid input coordinates" do
+    #   allow(self).to receive(:gets). and_return("A9 B1")
+    #   expect {test_console.get_valid_move_coords}.to output(nil)
+    # end
   end
 end

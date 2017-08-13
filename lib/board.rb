@@ -1,9 +1,4 @@
-require_relative "../lib/pieces/pawn"
-require_relative "../lib/pieces/knight"
-require_relative "../lib/pieces/bishop"
-require_relative "../lib/pieces/rook"
-require_relative "../lib/pieces/queen"
-require_relative "../lib/pieces/king"
+require_relative "../config/environment.rb"
 # 1 pawn
 # 2 knight
 # 3 bishop
@@ -14,17 +9,19 @@ require_relative "../lib/pieces/king"
 # positive - white
 
 class Board
-  def initialize
+  attr_accessor :board
+
+  def new_chessboard
     @board = Array.new(64,0)
     black_pieces = [
-      Rook.new("black"), Knight.new("black"), Bishop.new("black"),
-      Queen.new("black"), King.new("black"), Bishop.new("black"),
-      Knight.new("black"), Rook.new("black")
+      Rook.new("black", self), Knight.new("black", self), Bishop.new("black", self),
+      Queen.new("black", self), King.new("black", self), Bishop.new("black", self),
+      Knight.new("black", self), Rook.new("black", self)
     ]
     white_pieces = [
-      Rook.new("white"), Knight.new("white"), Bishop.new("white"),
-      Queen.new("white"), King.new("white"), Bishop.new("white"),
-      Knight.new("white"), Rook.new("white")
+      Rook.new("white", self), Knight.new("white", self), Bishop.new("white", self),
+      Queen.new("white", self), King.new("white", self), Bishop.new("white", self),
+      Knight.new("white", self), Rook.new("white", self)
     ]
     for i in 0..7 do
       @board[i] = black_pieces.shift
@@ -35,16 +32,16 @@ class Board
     end
 
     for i in 8..15 do
-      @board[i] = Pawn.new("black")
+      @board[i] = Pawn.new("black", self)
     end
 
     for i in 48..55 do
-      @board[i] = Pawn.new("white")
+      @board[i] = Pawn.new("white", self)
     end
 
   end
 
-  def board
+  def get_board
     @board.map do |square|
       if square.is_a? Pawn
         "#{square.color} pawn"

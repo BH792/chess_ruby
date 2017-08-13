@@ -1,6 +1,10 @@
 require_relative "piece"
 
 class Pawn < Piece
+  def pawn_valid_moves
+    valid_moves = []
+  end
+
   def move_trace(current_index, target_index)
     move_diff = current_index - target_index
     player_direction = @color == "white" ? -1 : 1

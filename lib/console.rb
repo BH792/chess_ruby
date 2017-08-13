@@ -1,4 +1,5 @@
-
+require_relative "../config/environment.rb"
+require "pry"
 
 class Console
   def print(board_array)
@@ -79,11 +80,14 @@ class Console
 
   def get_valid_move_coords
     puts "Please enter a valid move or enter 'help' for more info"
+    # binding.pry
     raw_move = gets.chomp
     if raw_move.downcase == "help" || raw_move.downcase == "h"
       move_help
     elsif is_move_valid?(raw_move)
       move_to_indexes(raw_move)
+    else
+      nil
     end
   end
 
@@ -109,9 +113,9 @@ end
 
 # console = Console.new
 #
-# # console.is_valid?("a2")
-# # console.get_valid_move
-# # binding.pry
-# ""
+#
 # board = Board.new
-# console.print(board.board)
+# console.print(board.get_board)
+#
+binding.pry
+""
