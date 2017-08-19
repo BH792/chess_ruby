@@ -1,11 +1,14 @@
-require_relative "../config/environment.rb"
-require "pry"
-
 class Console
-  def print(board_array)
+  attr_accessor :board
+
+  def initialize(board = nil)
+    board ? @board = board : @board = ChessBoard.new
+  end
+
+  def print
     board_str = "  ---------------------------------\n 1"
     for i in 0..63 do
-      board_str += "| #{to_unicode(board_array[i])} "
+      board_str += "| #{to_unicode(@board.board[i])} "
       if (i + 1) % 8 == 0
         board_str += "|\n  ---------------------------------\n"
         if i < 56
@@ -19,29 +22,29 @@ class Console
 
   def to_unicode(piece_code)
     case piece_code
-    when "white pawn"
+    when 1
       "\u2659"
-    when "white knight"
+    when 2
       "\u2658"
-    when "white bishop"
+    when 3
       "\u2657"
-    when "white rook"
+    when 4
       "\u2656"
-    when "white queen"
+    when 5
       "\u2655"
-    when "white king"
+    when 6
       "\u2654"
-    when "black pawn"
+    when -1
       "\u265F"
-    when "black knight"
+    when -2
       "\u265E"
-    when "black bishop"
+    when -3
       "\u265D"
-    when "black rook"
+    when -4
       "\u265C"
-    when "black queen"
+    when -5
       "\u265B"
-    when "black king"
+    when -6
       "\u265A"
     else
       " "
@@ -85,7 +88,7 @@ class Console
     if raw_move.downcase == "help" || raw_move.downcase == "h"
       move_help
     elsif is_move_valid?(raw_move)
-      move_to_indexes(raw_move)
+      @board.move(move_to_indexes(raw_move))
     else
       nil
     end
@@ -107,15 +110,6 @@ class Console
     puts "       ______________|    |__________ "
     puts "      |                              |"
     puts "Current Piece Coordinate         Target Coordinate"
+    get_valid_move_coords
   end
 end
-
-
-# console = Console.new
-#
-#
-# board = Board.new
-# console.print(board.get_board)
-#
-binding.pry
-""

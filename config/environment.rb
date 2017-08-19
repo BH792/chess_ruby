@@ -1,9 +1,10 @@
+require "bundler"
+Bundler.require
 
-Dir["./lib/*.rb"].each {|file| require file }
-Dir["./lib/pieces/*.rb"].each {|file| require file }
+require_all "lib"
+require_all "model"
 
-#
-# require_relative "../lib/board"
-# require_relative "../lib/pieces/piece"
-# require_relative "../lib/pieces/orthogonal_moves"
-# require_relative "../lib/pieces/rook"
+ActiveRecord::Base.establish_connection(
+  :adapter => "sqlite3",
+  :database => "db/chess.sqlite"
+)
