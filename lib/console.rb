@@ -1,6 +1,18 @@
 class Console
   attr_accessor :board
 
+  # for testing only
+  def m
+    get_valid_move_coords
+    p
+  end
+
+  def p
+    print
+  end
+  # end here
+
+
   def initialize(board = nil)
     board ? @board = board : @board = ChessBoard.new
   end
@@ -89,8 +101,6 @@ class Console
       move_help
     elsif is_move_valid?(raw_move)
       @board.move(move_to_indexes(raw_move))
-    else
-      nil
     end
   end
 

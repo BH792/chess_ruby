@@ -5,4 +5,7 @@ def reload!
 load_all "lib"
 end
 
-Pry.start
+c = Console.new
+binding.pry
+
+1

@@ -1,4 +1,6 @@
 class ChessBoard
+  include Knight, Bishop
+
   attr_reader :board
   # 1 pawn
   # 2 knight
@@ -32,7 +34,7 @@ class ChessBoard
   end
 
   def move(coords)
-    if validate_move(coords)
+    if validate_piece(coords)
       @board[coords[1]] = @board[coords[0]]
       @board[coords[0]] = 0
     end
@@ -42,7 +44,22 @@ class ChessBoard
     validate_piece(coords)
   end
 
-  def validate_piece
-
+  def validate_piece(coords)
+    case @board[coords[0]]
+    when 0
+      false
+    when 1, -1
+      true
+    when 2, -2
+      knight_move_validation(coords)
+    when 3, -3
+      bishop_move_validation(coords)
+    when 4, -4
+      true
+    when 5, -5
+      true
+    when 6, -6
+      true
+    end
   end
 end
