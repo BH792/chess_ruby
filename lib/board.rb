@@ -1,5 +1,5 @@
 class ChessBoard
-  include Bishop, Knight
+  include Bishop, Knight, Rook
   attr_reader :board
   # 1 pawn
   # 2 knight
@@ -36,6 +36,8 @@ class ChessBoard
     if validate_piece(coords)
       @board[coords[1]] = @board[coords[0]]
       @board[coords[0]] = 0
+    else
+      puts "Invalid Move"
     end
   end
 
@@ -54,7 +56,7 @@ class ChessBoard
     when 3, -3
       bishop_move_validation(coords)
     when 4, -4
-      true
+      rook_move_validation(coords)
     when 5, -5
       true
     when 6, -6

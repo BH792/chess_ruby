@@ -10,6 +10,11 @@ class Console
   def p
     print
   end
+
+  def pm
+    p
+    m
+  end
   # end here
 
 

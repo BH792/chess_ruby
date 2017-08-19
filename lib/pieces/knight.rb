@@ -7,5 +7,3 @@ module Knight
     end
   end
 end
-
-puts "knight"

@@ -3,5 +3,3 @@ module Piece
     @board[coords[0]] * @board[coords[1]] > 0
   end
 end
-
-puts "piece"
