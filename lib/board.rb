@@ -1,5 +1,5 @@
 class ChessBoard
-  include Bishop, Knight, Rook
+  include Bishop, Knight, Rook, Queen
   attr_reader :board
   # 1 pawn
   # 2 knight
@@ -58,7 +58,7 @@ class ChessBoard
     when 4, -4
       rook_move_validation(coords)
     when 5, -5
-      true
+      queen_move_validation(coords)
     when 6, -6
       true
     end

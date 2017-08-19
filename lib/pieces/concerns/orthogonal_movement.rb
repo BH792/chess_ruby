@@ -1,5 +1,5 @@
 module OrthogonalMovement
-  def is_orthonal?(coords)
+  def is_orthogonal?(coords)
     move_diff = coords[0] - coords[1]
     if move_diff % 8 == 0
       "vertical"
