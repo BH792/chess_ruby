@@ -3,7 +3,7 @@ module Bishop
 
   def bishop_move_validation(coords)
     if is_diagonal?(coords)
-      diagonal_movement_validation(coords)
+      !same_color?(coords) if diagonal_movement_validation(coords)
     else
       false
     end

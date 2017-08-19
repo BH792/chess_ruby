@@ -6,6 +6,7 @@ load_all "lib"
 end
 
 c = Console.new
+c.p
 binding.pry
 
 1

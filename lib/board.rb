@@ -1,6 +1,5 @@
 class ChessBoard
-  include Knight, Bishop
-
+  include Bishop, Knight
   attr_reader :board
   # 1 pawn
   # 2 knight
