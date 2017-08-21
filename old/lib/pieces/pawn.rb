@@ -11,7 +11,7 @@ class Pawn < Piece
 
 
     if move_diff == 16 * player_direction && !@has_moved
-      [current_index + move_diff / 2, target_index]
+      [current_index - move_diff / 2, target_index]
     elsif move_diff == 8 * player_direction
       [target_index]
     elsif move_diff == 7 * player_direction || move_diff == 9 * player_direction

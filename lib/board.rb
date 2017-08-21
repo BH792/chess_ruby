@@ -1,6 +1,6 @@
 class ChessBoard
-  include Bishop, Knight, Rook, Queen
-  attr_reader :board
+  include Bishop, Knight, Rook, Queen, Pawn, King
+  attr_reader :board, :black_castling, :white_castling
   # 1 pawn
   # 2 knight
   # 3 bishop
@@ -12,7 +12,8 @@ class ChessBoard
 
   def initialize
     @board = Array.new(64, 0)
-
+    @black_castling = true
+    @white_castling = true
     # place pawns
     for i in (8..15)
       @board[i] = -1
@@ -50,7 +51,7 @@ class ChessBoard
     when 0
       false
     when 1, -1
-      true
+      pawn_move_validation(coords)
     when 2, -2
       knight_move_validation(coords)
     when 3, -3
