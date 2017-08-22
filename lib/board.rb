@@ -1,6 +1,6 @@
 class ChessBoard
   include Bishop, Knight, Rook, Queen, Pawn, King
-  attr_reader :board, :black_castling, :white_castling
+  attr_accessor :board, :black_king_side_castling, :white_king_side_castling, :black_queen_side_castling, :white_queen_side_castling, :last_move
   # 1 pawn
   # 2 knight
   # 3 bishop
@@ -12,8 +12,12 @@ class ChessBoard
 
   def initialize
     @board = Array.new(64, 0)
-    @black_castling = true
-    @white_castling = true
+    @black_king_side_castling = true
+    @white_king_side_castling = true
+    @black_queen_side_castling = true
+    @white_queen_side_castling = true
+    @last_move = [64,64]
+
     # place pawns
     for i in (8..15)
       @board[i] = -1
@@ -37,13 +41,15 @@ class ChessBoard
     if validate_piece(coords)
       @board[coords[1]] = @board[coords[0]]
       @board[coords[0]] = 0
+      @last_move = coords
     else
       puts "Invalid Move"
     end
   end
 
-  def validate_move(coords)
-    validate_piece(coords)
+  def force_move(coords)
+    @board[coords[1]] = @board[coords[0]]
+    @board[coords[0]] = 0
   end
 
   def validate_piece(coords)
@@ -61,7 +67,7 @@ class ChessBoard
     when 5, -5
       queen_move_validation(coords)
     when 6, -6
-      true
+      king_move_validation(coords)
     end
   end
 end

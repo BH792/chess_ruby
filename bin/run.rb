@@ -6,7 +6,15 @@ load_all "lib"
 end
 
 c = Console.new
-c.p
-binding.pry
+turn = 1
+check_mate = false
+c.print
 
-1
+while !check_mate
+  c.get_valid_move_coords
+  c.print
+  turn += 1
+  check_mate = c.board.is_checkmate?
+end
+
+puts "Checkmate"
