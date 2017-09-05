@@ -16,6 +16,8 @@ $ ruby bin/run.rb
 ```
 The following board should display in console
 
+![Image of Board](https://github.com/BH792/chess_ruby/blob/master/img/Screen%20Shot%202017-09-05%20at%208.34.29%20AM.png)
+
 Each player should take turns entering a move in the format of "A2 A5" where the first coordinate is the current location of the piece and the second is the target location.  The game will move the piece and rerender the board if the player enters a valid move.  
 
 The game will run until there is a checkmate; to exit prematurely, press Control + C
